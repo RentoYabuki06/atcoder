@@ -10,20 +10,16 @@ int main() {
 		string sign;
 		int B;
 		cin >> sign >> B;
-		cout << i + 1 << ":";
+
 		if (sign == "+") A += B;
 		else if (sign == "-") A -= B;
 		else if (sign == "*") A *= B;
-		else if (sign == "/")
+		else if (sign == "/" && B != 0) A /= B;
+		else
 		{
-			if (B != 0) A /= B;
-			else
-			{
-				cout << "error" << endl;
-				return 1;
-			}
+			cout << "error" << endl;
+			break;
 		}
-		cout << A << endl;
+		cout << i + 1 << ":" << A << endl;
 	}
-	return 0;
 }
