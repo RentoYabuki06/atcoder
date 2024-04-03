@@ -30,13 +30,13 @@ int main()
 
 	int max_mode = 0;
 	int max_index = -1;
-	for (int i = 0; i < N; i++)
+	for (auto it = mode.begin(); it != mode.end(); it++)
 	{
-		if (max_mode < mode.at(i))
+		if (max_mode < it->second)
 		{
-			max_mode = mode.at(i);
-			max_index = i;
+			max_mode = it->second;
+			max_index = it->first;
 		}	
 	}
-	cout << max_mode << " " << max_index << endl;
+	cout << max_index << " " << max_mode << endl;
 }

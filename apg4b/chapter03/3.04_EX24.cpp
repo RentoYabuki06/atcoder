@@ -32,7 +32,7 @@ struct Clock{
 		min02 = "0123456789"[minute % 10];
 		sec01 = "0123456789"[second / 10];
 		sec02 = "0123456789"[second % 10];
-		S += "\"";
+
 		S += hour01;
 		S += hour02;
 		S += ":";
@@ -41,7 +41,6 @@ struct Clock{
 		S += ":";
 		S += sec01;
 		S += sec02;
-		S += "\"";
 		return S;
 	}
 
@@ -55,17 +54,17 @@ struct Clock{
 			minute += diff_second / 60;
 			diff_second %= 60;
 			second += diff_second;
-			while (second > 59)
+			while (second >= 60)
 			{
 				minute += 1;
 				second -= 60;
 			}
-			while (minute > 59)
+			while (minute >= 60)
 			{
 				hour += 1;
 				minute -= 60;
 			}
-			while (hour > 23)
+			while (hour >= 24)
 			{
 				hour -= 24;
 			}
