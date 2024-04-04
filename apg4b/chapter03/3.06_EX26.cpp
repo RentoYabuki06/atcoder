@@ -68,7 +68,7 @@ int calc_int(map<string, int> &var_int)
 vector<int> read_vec_val(map<string, int> &var_int)
 {
 	vector<int> ret;
-	string s = NULL;
+	string s;
 	while (s != "]")
 	{
 		int num = read_int(var_int);
@@ -114,13 +114,14 @@ vector<int> calc_vec(map<string, int> &var_int, map<string, vector<int>> &var_ve
 			ret[i] = left.at(i) + right.at(i);
 		}
 	}
-	else
+	else if (s == '-')
 	{
 		for (int i = 0; i < left.size(); i++)
 		{
 			ret[i] = left.at(i) - right.at(i);
 		}
 	}
+
 	return ret;
 }
 
