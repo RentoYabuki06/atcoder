@@ -1,5 +1,5 @@
-*/.DS_Store
-*/.gitignore
-*/.vscode
+**/.DS_Store
+**/.gitignore
+**/.vscode
 ABC/abc348/memo.cpp
 ABC/abc348/d.cpp
