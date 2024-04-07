@@ -5,7 +5,6 @@
 using namespace std;
 
 int	H, W, N, x,y, point, tmp, tmp_point;
-// vector<vector<int>> point_place;
 int start_col, start_row, goal_col, goal_row;
 vector<vector<int>> num_board; 
 
@@ -94,7 +93,6 @@ int	main()
 		}
 	}
 	cin >> N;
-	// point_place.resize(N, 3);
 	for (int i = 0; i < N; i++)
 	{
 		cin >> x >> y >> point;
