@@ -15,4 +15,8 @@ int main()
 		cin >> A[i] >> B[i];
 		dp[A[i]].push_back(B[i]);
 	}
+	for (int i = 1; i <= M; i++)
+	{
+		sort(dp[i].begin(), dp[i].end());
+	}
 }
