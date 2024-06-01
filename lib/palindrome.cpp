@@ -1,3 +1,4 @@
+// 回文判定プログラム
 #include <iostream>
 #include <string>
 #include <unordered_map>
