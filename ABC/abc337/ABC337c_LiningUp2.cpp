@@ -1,30 +1,28 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
 int N;
-vector<pair<int, int>> A;
-bool terminal[300009];
+int A[300009];
 
 int main()
 {
 	cin >> N;
+	vector<int> people(N + 1, N + 1);
 	int front = -1;
-	for (int i = 1; i <= N; i++) A.push_back(make_pair(i, N + 1));
 	for (int i = 1; i <= N; i++)
 	{
-		int tmp;
-		cin >> tmp;
+		cin >> A[i];
 		if (A[i] == -1) front = i;
+		else people[A[i]] = i;
 	}
 	cout << front;
-	int Cnum = A[front];
-	while (Cnum != N + 1)
+	front = people[front];
+	while (front < N + 1)
 	{
-		cout << " " << Cnum;
-		Cnum = A[Cnum];
+		cout << " " << front;
+		front = people[front];
 	}
 	cout << endl;
 	return 0;
