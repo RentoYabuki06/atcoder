@@ -1,64 +1,48 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-long long N, M, K;
-long long C[1009];
-char R[1009];
-bool R_key[1009];
-long long A[109][109];
-bool key[109];
-
-int main()
-{
-    cin >> N >> M >> K;
-    for (long long i = 1; i <= M; i++)
-    {
-        cin >> C[i];
-        for (long long j = 1; j <= C[i]; j++) cin >> A[i][j];
-        cin >> R[i];
-        if (R[i] == 'o') R_key[i] = true;
-        else R_key[i] = false;
-    }
-    long long ans = 0;
-    // ビット全探索
-    for (long long i = 0; i < (1LL << N); i++)
-    {
-        long long tmp = i;
-        long long count = 0;
-        for (long long j = 1; j <= N; j++)
-        {
-            if (tmp >> (j - 1) & 1)
-            {
-                key[j] = true;
-                count++;
-            }
-            else key[j] = false;
+int main() {
+    int n, m, k;
+    cin >> n >> m >> k;
+    vector<vector<int>> key(m, vector<int>(n, 0));
+    vector<string> r(m);
+    
+    for (int i = 0; i < m; i++) {
+        int c;
+        cin >> c;
+        for (int j = 0; j < c; j++) {
+            int a;
+            cin >> a;
+            key[i][a - 1] = 1;
         }
-        if (count < K) continue;
-        bool valid = true;
-        for (long long i = 1; i <= M; i++)
-        {
-            long long num_true = 0;
-            for (long long j = 1; j <= C[i]; j++)
-            {
-                if (key[A[i][j]])
-                {
-                    num_true++;
+        cin >> r[i];
+    }
+
+    int res = 0;
+    for (int i = 0; i < (1 << n); i++) {
+        vector<int> tf(n);
+        for (int j = 0; j < n; j++) {
+            tf[j] = (i & (1 << j)) ? 1 : 0;
+        }
+
+        bool jud = true;
+        for (int j = 0; j < m; j++) {
+            int ck = 0;
+            for (int p = 0; p < n; p++) {
+                if (key[j][p] == 1 && tf[p] == 1) {
+                    ck++;
                 }
             }
-            if (num_true >= K && !R_key[i])
-            {
-                valid = false;
-                break;
-            }
-            if (num_true < K && R_key[i])
-            {
-                valid = false;
+            if ((ck >= k && r[j] == "x") || (ck < k && r[j] == "o")) {
+                jud = false;
                 break;
             }
         }
-        if (valid) ans++;
+        if (jud) {
+            res++;
+        }
     }
-    cout << ans << endl;
+    cout << res << "\n";
     return 0;
 }
