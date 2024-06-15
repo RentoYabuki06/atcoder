@@ -20,7 +20,7 @@ int main()
 	sort(A.begin(), A.end());
 	sort(B.begin(), B.end());
 	sort(C.begin(), C.end());
-	// 解を求める
+	// 中段のBを基準に上下の可能性のパターンを全て足して解を求める
 	ll ans = 0;
 	for (int i = 0; i < N; i++)
 	{
