@@ -17,7 +17,7 @@ int main()
 	for (int i = 1; i <= Q; i++)
 	{
 		cin >> T[i];
-		int pos = lower_bound(S + 1, S + N + 1, T[i]) - S;
+		int pos = lower_bound(S + 1, S + N + 1, T[i]) - S; // indexが1から始まっていることに注意
 		if (pos <= N && S[pos] == T[i]) count++;
 	}
 	cout << count << endl;
