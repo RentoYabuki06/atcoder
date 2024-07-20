@@ -1,3 +1,6 @@
+// 連鎖行列積問題を詳しく解説してるqiita
+// https://qiita.com/ikamirin/items/5ddbe04cb4d4ce6ed6af#%E8%A7%A3%E3%81%8D%E6%96%B9
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -21,16 +24,18 @@ int main() {
         X.push_back(C[i]);
     }
 
-    // 区切り単位i, 区切り始めj
+    // 区切り単位len, (L, R)
     vector<vector<ll>> dp(N + 1, vector<ll>(N + 1, 0));
     
-    for (int i = 2; i <= N; i++) {
-        for (int j = 1; j <= N - i + 1; j++) {
-            int k = i + j - 1;
-            dp[j][k] = INF;
-            for (int l = j; l < k; l++) {
-                ll tmp = dp[j][l] + dp[l + 1][k] + X[j - 1] * X[l] * X[k];
-                dp[j][k] = min(dp[j][k], tmp);
+    for (int len = 2; len <= N; len++) {
+        for (int L = 1; L <= N - len + 1; L++) {
+            int R = len + L - 1;
+            dp[L][R] = INF;
+            // 分割する場所をL~R-1までで選択
+            for (int l = L; l < R; l++) {
+                // (AB)(C)の計算量＝(AB)の計算量＋(C)の計算量＋(AB)の行数×(AB)の列数×(C)の列数
+                ll tmp = dp[L][l] + dp[l + 1][R] + X[L - 1] * X[l] * X[R];
+                dp[L][R] = min(dp[L][R], tmp);
             }
         }
     }
